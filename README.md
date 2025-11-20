@@ -6,22 +6,22 @@ It includes both a **Flask HTTP Server** for noise monitoring and an **Android A
 
 ---
 
-## 📡 1. HTTP Flask Server (Noise Monitoring)
+##  1. HTTP Flask Server (Noise Monitoring)
 
 **Folder:** `http_flask_server/`
 
 This component uses a **sound level sensor** connected to an **ESP32** and publishes readings to **Adafruit IO**.  
 A **Flask web app** polls the Adafruit REST API to visualize live noise levels using **Chart.js**.
 
-### 🧩 Features
+###  Features
 - Real-time noise level monitoring via HTTP polling  
-- Visual alert when noise exceeds 68 dB  
+- Visual alert when noise exceeds 85 dB  
 - Adafruit IO integration for live data  
 - Flask + Chart.js dashboard interface  
 
 ---
 
-## ⚙️ Setup Instructions
+##  Setup Instructions
 
 ### 1. Clone this repository
 ```bash
@@ -49,6 +49,6 @@ python app.py
 
 ### 5. Open the web dashboard
 After the server starts, open your browser and go to:  
-👉 [http://127.0.0.1:5000](http://127.0.0.1:5000)
+ [http://127.0.0.1:5000](http://127.0.0.1:5000)
 
-## 📱 2. Android App (Mobile Visualization)
+##  2. Android App (Mobile Visualization)

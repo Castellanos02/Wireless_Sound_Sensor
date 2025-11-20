@@ -4,8 +4,6 @@ This project aims to design and implement a wireless real-time noise detection s
 environmental sound levels and visualizes them on a live web dashboard and Android App.
 It includes both a **Flask HTTP Server** for noise monitoring and an **Android App** for mobile visualization.
 
----
-
 ##  1. HTTP Flask Server (Noise Monitoring)
 
 **Folder:** `http_flask_server/`
@@ -18,8 +16,6 @@ A **Flask web app** polls the Adafruit REST API to visualize live noise levels u
 - Visual alert when noise exceeds 85 dB  
 - Adafruit IO integration for live data  
 - Flask + Chart.js dashboard interface  
-
----
 
 ##  Setup Instructions
 

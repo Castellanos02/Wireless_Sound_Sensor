@@ -9,7 +9,9 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.eclipse.paho.android.service.MqttAndroidClient;
+//import org.eclipse.paho.android.service.MqttAndroidClient;
+import info.mqtt.android.service.MqttAndroidClient;
+import info.mqtt.android.service.Ack;
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.IMqttToken;
@@ -25,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TOPIC = AIO_USERNAME + "/feeds/" + FEED_KEY;
     private static final String TOPIC_ALL = AIO_USERNAME + "/feeds/+";
     private static final String SERVER_URI = "ssl://io.adafruit.com:8883";
-
+    
     private TextView messageText;
     private TextView warningText;
     private ProgressBar progressBar;
@@ -46,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         progressBar.setMax(100);
 
         String clientId = "android-" + System.currentTimeMillis();
-        client = new MqttAndroidClient(getApplicationContext(), SERVER_URI, clientId);
+        client = new MqttAndroidClient(getApplicationContext(), SERVER_URI, clientId, Ack.AUTO_ACK);
 
         client.setCallback(new MqttCallbackExtended() {
             @Override
@@ -78,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                     float minDb = 30f;
                     float maxDb = 80f;
 
-                    float normalized = (dbValue - minDb) / (maxDb - minDb);
+                    float normalized = (dbValue - minDb) / (maxDb - minDb);  // 0.0 -> 1.0
                     int progress = Math.round(normalized * 100f);
 
                     if (progress < 0) progress = 0;

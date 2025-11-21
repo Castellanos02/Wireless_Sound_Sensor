@@ -28,13 +28,33 @@ android {
     }
 }
 
+//dependencies {
+//    implementation 'androidx.appcompat:appcompat:1.6.1'
+//    implementation 'com.google.android.material:material:1.11.0'
+//    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+//
+//    implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.5'
+//    implementation 'org.eclipse.paho:org.eclipse.paho.android.service:1.1.1'
+//    implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.1.0'
+//
+//    // Core client
+//    implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.5'
+//
+//    // Android service – fork with modern Android fixes
+//    implementation 'com.github.hannesa2:paho.mqtt.android:4.3.1'  // or latest
+//
+//}
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.11.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
+    // Core MQTT client (keep this)
     implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.5'
-    implementation 'org.eclipse.paho:org.eclipse.paho.android.service:1.1.1'
-    implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.1.0'
 
+    // Android MQTT service that supports Android 12+ (PendingIntent + receivers fixes)
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.github.hannesa2:paho.mqtt.android:3.3.5'
+
+    implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.1.0'
 }

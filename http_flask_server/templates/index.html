@@ -8,7 +8,7 @@
 </head>
 
 <body style="text-align:center; font-family:sans-serif;">
-    <h2>📈 Real-Time Noise Level</h2>
+    <h2>Real-Time Noise Level</h2>
     <canvas id="noiseChart" width="600" height="300"></canvas>
     <p id="alert"></p>
 
@@ -32,7 +32,7 @@
 
         const alertBox = document.getElementById('alert');
 
-        // --- HTTP polling ---
+        // HTTP polling
         async function updateChart() {
             const res = await fetch('/data');
             const data = await res.json();
@@ -50,11 +50,11 @@
             chart.update();
 
             if (latest > 68) {
-                alertBox.textContent = "⚠️ Environment too loud!";
+                alertBox.textContent = "Environment too loud!";
                 alertBox.style.color = "red";
                 document.body.style.background = "#ffe5e5";
             } else {
-                alertBox.textContent = "✅ Safe noise level";
+                alertBox.textContent = "Safe noise level";
                 alertBox.style.color = "green";
                 document.body.style.background = "white";
             }

@@ -51,13 +51,13 @@ After the server starts, open your browser and go to:
 
 **Folder:** `android_app/`
 
-This Android App was created to provide a real-time visulization of the sound levels that are sent to the Adafruit IO feed. It connects to the feed by using MQTT and displays the most recent value the feed has received.
+This Android App was created to provide a real-time visualization of the sound levels that are sent to the Adafruit IO feed. It connects to the feed by using MQTT and displays the most recent value the feed has received.
 
 ###  Features
 - Receive real-time noise levels from Adafruit IO feed
 - Displays the most recent sound level
 - Displays a progress bar to show how close the noise level is to an unsafe noise level
-- Changes progress bar color depening on the sound level
+- Changes progress bar color depending on the sound level
 - Warning message is displayed after the noise level exceeds 80.0 dB
 
 ##  Setup Instructions
@@ -78,6 +78,55 @@ cd Wireless_Sound_Sensor/http_flask_server
 - Go to Device Manager, located top right
 - Click "Create Device"
 - Select Pixel 5 phone 
-- Select API 34 for system image, may need to dowload it
+- Select API 34 for system image, may need to download it
 - Click "next" then "finish" to create the emulator
 - Start the emulator by clicking the "Run" at the top bar and then "/Run 'app'" to start the app
+
+##  3. Noise Detection Sensor
+## Parts List
+
+| Component                                   | Cost    |
+|---------------------------------------------|---------|
+| Gravity: Analog Sound Level Meter           | $39.50  |
+| NeoPixel Ring – 24 × 5050 RGBW LEDs         | $19.95  |
+| Breadboarding Wire Bundle                   | $4.95   |
+| Breadboard Power Kit                        | $5.99   |
+| Dorcy Mastercell 9V Battery                 | $2.99   |
+| Adafruit ESP32-S2 Feather                   | $17.99  |
+| Pink and Purple Woven USB A to USB C Cable  | $2.95  |
+
+**Total Cost: $94.32**
+
+##  Setup Instructions
+
+### 1. Place breadboard power kit onto breadboard
+
+### 2. Place Adafruit ESP32-S2 Feather onto breadboard
+- Place one breadboard wire from the GND pin on the ESP32-S2 to a negative side hole on the breadboard
+- Place one breadboard wire from the USB pin on the ESP32-S2 to a positive side hole on the breadboard
+
+### 3. Connect analog sound level meter to breadboard
+- Connect one breadboard wire from the meter to the A0 pin on the ESP32-S2 
+- Connect one breadboard wire from the meter to the negative side holes on the breadboard
+- Connect one breadboard wire from the meter to the positive side holes on the breadboard
+
+### 4. Connect NeoPixel ring to breadboard
+- Connect one breadboard wire from the ring to the 5 pin on the ESP32-S2 
+- Connect one breadboard wire from the ring to the negative side holes on the breadboard
+- Connect one breadboard wire from the ring to the positive side holes on the breadboard
+
+### 5. Ensure proper board and libraries are used
+- Open up Arduino IDE 
+- Install "Adafruit Feather ESP32-S2" by clicking "Tools -> Board Manager"
+- Install the following libraries by clicking "Sketch -> Include Library -> Manage Libraries":
+  - Adafruit MQTT Library
+  - Adafruit NeoPixel
+
+### 6. Insert Code into ESP32-S2
+- Add Wi-Fi and Adafruit IO credentials in file
+- Connect USB to ESP32-S2 to computer
+- Use Arduino IDE to send code to ESP32-S2
+- Click "Verify" on the top left to ensure there is no errors in the code
+- Click "Upload" on the top left to send code into the ESP32-S2
+
+### 7. Connect power source to breadboard power kit

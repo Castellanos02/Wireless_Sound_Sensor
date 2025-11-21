@@ -83,6 +83,9 @@ cd Wireless_Sound_Sensor/http_flask_server
 - Start the emulator by clicking the "Run" at the top bar and then "/Run 'app'" to start the app
 
 ##  3. Noise Detection Sensor
+
+**Folder:** `noise_detection_sensor/`
+
 ## Parts List
 
 | Component                                   | Cost    |
@@ -96,6 +99,13 @@ cd Wireless_Sound_Sensor/http_flask_server
 | Pink and Purple Woven USB A to USB C Cable  | $2.95  |
 
 **Total Cost: $94.32**
+
+###  Features
+- Connect to Wi-Fi
+- Connect to Adafruit IO feed
+- Receive sound level values
+- Send sound level values to feed
+- Display how close the noise level value is to an unsafe noise level
 
 ##  Setup Instructions
 
@@ -116,7 +126,8 @@ cd Wireless_Sound_Sensor/http_flask_server
 - Connect one breadboard wire from the ring to the positive side holes on the breadboard
 
 ### 5. Ensure proper board and libraries are used
-- Open up Arduino IDE 
+- Open up Arduino IDE
+- Open "print_values.ino" which is the file located in the "noise_detection_sensor/" folder   
 - Install "Adafruit Feather ESP32-S2" by clicking "Tools -> Board Manager"
 - Install the following libraries by clicking "Sketch -> Include Library -> Manage Libraries":
   - Adafruit MQTT Library

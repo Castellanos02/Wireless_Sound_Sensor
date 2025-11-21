@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                     float minDb = 30f;
                     float maxDb = 80f;
 
-                    float normalized = (dbValue - minDb) / (maxDb - minDb);  // 0.0 -> 1.0
+                    float normalized = (dbValue - minDb) / (maxDb - minDb);
                     int progress = Math.round(normalized * 100f);
 
                     if (progress < 0) progress = 0;

@@ -77,8 +77,8 @@ cd Wireless_Sound_Sensor/http_flask_server
 ### 4. Create an Android Emulator
 - Go to Device Manager, located top right
 - Click "Create Device"
-- Select Pixel 5 phone 
-- Select API 34 for system image, may need to download it
+- Select Pixel 6 phone 
+- Select Tiramisu for system image, may need to download it
 - Click "next" then "finish" to create the emulator
 - Start the emulator by clicking the "Run" at the top bar and then "/Run 'app'" to start the app
 

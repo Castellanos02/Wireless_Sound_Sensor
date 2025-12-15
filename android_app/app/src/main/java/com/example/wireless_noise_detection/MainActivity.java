@@ -20,7 +20,7 @@ import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 public class MainActivity extends AppCompatActivity {
-
+    // Adafruit.io feed credentials
     private static final String AIO_USERNAME = "";
     private static final String AIO_KEY = "";
     private static final String FEED_KEY = "";
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
-
+        // finds the items that will be changed
         progressBar = findViewById(R.id.progressBar);
         messageText = findViewById(R.id.messageText);
         warningText = findViewById(R.id.warningText);
@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         client.setCallback(new MqttCallbackExtended() {
             @Override
             public void connectComplete(boolean reconnect, String serverURI) {
+                // this helps subscribe to the Adafruit.io feed
                 subscribeTo(TOPIC);
                 subscribeTo(TOPIC_ALL);
                 requestLastValue();
@@ -74,15 +75,15 @@ public class MainActivity extends AppCompatActivity {
                     } catch (Exception e) {
                         return;
                     }
-
+                    // this puts together the text that will display the decibel values to the user
                     messageText.setText(text + " dB");
 
                     float minDb = 30f;
                     float maxDb = 80f;
 
-                    float normalized = (dbValue - minDb) / (maxDb - minDb);  // 0.0 -> 1.0
+                    float normalized = (dbValue - minDb) / (maxDb - minDb);
                     int progress = Math.round(normalized * 100f);
-
+                    // this section helps create the logic for the progress bar
                     if (progress < 0) progress = 0;
                     if (progress > 100) progress = 100;
 
@@ -104,7 +105,8 @@ public class MainActivity extends AppCompatActivity {
         });
         connectAndSubscribe();
     }
-
+    // this helps connect and subscribe to the Adafruit.io feed
+    // subscribing to the feed helps the app receive the values sent to the feed
     private void connectAndSubscribe() {
         MqttConnectOptions opts = new MqttConnectOptions();
         opts.setCleanSession(true);
@@ -127,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
         }
     }
-
+    // this helps subscribe to the Adafruit.io feed
     private void subscribeTo(String topic) {
         try {
             client.subscribe(topic, 1, null, new IMqttActionListener() {
@@ -145,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
-
+    // this helps get the most recent value sent to the feed
     private void requestLastValue() {
         try {
             MqttMessage msg = new MqttMessage(new byte[0]);

@@ -150,7 +150,7 @@ void drawGauge(float db_val) {
   strip.show();
 }
 
-
+// helps setup the device to connect to the wifi
 void setup() {
   Serial.begin(115200);
   uint32_t t0 = millis();
@@ -171,6 +171,7 @@ void setup() {
   DBGln(F("Columns: adc, volts, dB_raw, dB_EMA, wifi, mqtt"));
 }
 
+// helps perfrom the logic of the device
 void loop() {
   if (WiFi.status() != WL_CONNECTED) {
     connectWiFi(5000);
@@ -193,7 +194,7 @@ void loop() {
 
   accum_db += db_raw;
   accum_n++;
-
+  // prints the sound values on the Ardunio IDE terminal
   if (Serial) {
     Serial.print(adc, 1);   Serial.print(',');
     Serial.print(volts, 3); Serial.print(',');
@@ -219,11 +220,11 @@ void loop() {
     avg_db = roundf(avg_db * 2.0f) / 2.0f;
 
     bool changed_enough = isnan(last_published) || fabsf(avg_db - last_published) >= MIN_DELTA_DB;
-
+    // checks to see if the value was sent without any errors
     if (WiFi.status() == WL_CONNECTED && mqtt.connected() && changed_enough) {
       if (!feed_db_raw.publish(avg_db)) {
         DBGln(F("MQTT publish failed (maybe throttled). Backing off 15s."));
-        throttle_release_at = millis() + 15000;  // gentle backoff
+        throttle_release_at = millis() + 15000;
       } else {
         last_published = avg_db;
         DBG(F("MQTT publish OK: ")); DBGln(avg_db);
